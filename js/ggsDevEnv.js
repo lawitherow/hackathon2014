@@ -13,10 +13,12 @@ var ggsDevEnv = (function(){
 	};
 
 	_showElement = function(elem) {
+		elem.style.visibility = "visible";
 		elem.style.opacity = 1;
 	};
 
 	_hideElement = function(elem) {
+		elem.style.visibility = "hidden";
 		elem.style.opacity = 0;
 	};
 
@@ -47,8 +49,8 @@ var ggsDevEnv = (function(){
 			var liElem = document.getElementById('main-navi').children[0].children[i];
 			liElem.addEventListener("click", function()
 			{
-				ggsDevEnv.showElement(document.getElementById("sub-navi"));
-				ggsDevEnv.slideOut(document.getElementById('sub-navi'), '200px');
+				ggsDevEnv.showElement(this.children[1]);
+				ggsDevEnv.slideOut(this.children[1], '200px');
 				ggsDevEnv.addCssClass(document.getElementById("main-navi"),"opacityDown");
 				
 			}, false)
@@ -59,8 +61,9 @@ var ggsDevEnv = (function(){
 		document.getElementById('main-navi').addEventListener("mouseenter", function(){ggsDevEnv.slideOut(document.getElementById('main-navi'), '0px')}, false);
 		document.getElementById('main-navi').addEventListener("mouseleave", function(){
 			ggsDevEnv.slideIn(document.getElementById('main-navi'), '-230px');
-			ggsDevEnv.hideElement(document.getElementById('sub-navi'));
-			ggsDevEnv.slideIn(document.getElementById('sub-navi'), '0');
+			ggsDevEnv.hideElement(document.getElementsByClassName('sub-navi'));
+			ggsDevEnv.slideIn(document.getElementsByClassName('sub-navi'), '0');
+			ggsDevEnv.removeCssClass(document.getElementById("main-navi"),"opacityDown");
 		}, false);
 		_setMainClickEvents();
 	};
