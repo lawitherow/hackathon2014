@@ -100,11 +100,11 @@ ul {
 	color: white;
 	text-transform: uppercase;
 	border-bottom: 1px solid white;
-<<<<<<< HEAD
 	padding-left: 15px;
 	padding-right: 15px;
 	height: 100px;
 	line-height: 100px;
+	cursor: pointer;
 }
 
 .basic-nav li:first-child {
@@ -116,12 +116,17 @@ ul {
 	padding:0;
 	position: absolute;
 	top:0;
-	left:250px;
+	left:0px;
 	background-color: #37393b;
 	width: 250px;
 	height: 100%;
-	display: none;
+	opacity: 0;
 	z-index: 0;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-ms-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
 }
 
 .sub-navi li {
@@ -132,7 +137,6 @@ ul {
 
 .sub-navi li:first-child{
 	border-top: 1px solid white;
-=======
 	padding-left: 20px;
 	padding-right: 20px;
 	height: 50px;
@@ -161,5 +165,8 @@ ul {
 	top: 0;
 	right: 0;
 	padding: 15px;
->>>>>>> origin/master
+}
+
+.opacityDown {
+	opacity: 50%;
 }
