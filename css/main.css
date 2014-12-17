@@ -127,6 +127,8 @@ ul {
 	-ms-transition: all 1s;
 	-o-transition: all 1s;
 	transition: all 1s;
+	-webkit-box-shadow: -10px 5px 20px -2px #000;
+    box-shadow: -10px 5px 20px -2px #000;
 }
 
 .sub-navi li {
@@ -169,7 +171,7 @@ ul {
 }
 
 .opacityDown {
-	opacity: 50%;
+	background-color: rgba(0,40,85,0.7);
 }
 
 
@@ -303,4 +305,3 @@ fieldset[disabled] .btn-danger.active {
   background-color: #d9534f;
   border-color: #d43f3a;
 }
->>>>>>> origin/master

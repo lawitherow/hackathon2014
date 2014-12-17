@@ -48,7 +48,8 @@ var ggsDevEnv = (function(){
 			liElem.addEventListener("click", function()
 			{
 				ggsDevEnv.showElement(document.getElementById("sub-navi"));
-				ggsDevEnv.slideOut(document.getElementById('sub-navi'), '250px');
+				ggsDevEnv.slideOut(document.getElementById('sub-navi'), '200px');
+				ggsDevEnv.addCssClass(document.getElementById("main-navi"),"opacityDown");
 				
 			}, false)
 		}
