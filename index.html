@@ -38,15 +38,39 @@
     </div>
     <div class="container">
         <div id="proj-window" class="proj-window">
-            <h1>Project Name</h1>
-            <span class="edit"><i class="fa fa-pencil fa-2x"></i></span>
+            <span class="edit"><i class="fa fa-pencil-square fa-1.5x"></i></span>
             <form>
-                <textarea name="params" cols="80" rows="25"></textarea>
-                <button type="submit">Click me</button>
+            <fieldset>
+            <legend><h1>Project Name</h1></legend>
+                <textarea name="params" cols="80" rows="25" disabled></textarea>
+                <button type="submit" disabled>Save Changes</button>
+            </fieldset>
             </form>
         </div>
         <div id="env-window" class="env-window">
-            <h1>Environment Name</h1>
+            <form>
+            <fieldset>
+            <legend><h1>Environment Name</h1></legend>
+                <p>
+                    <label for="status">Environment Status: </label>
+                    <button type="button" class="btn btn-success">Lookin' Good! For now.</button>
+                    <!-- toggle class from btn-success to btn-warning, or btn-danger as needed -->
+                </p>
+                <p>
+                    <label for="status">IP Address: </label>
+                    <input type="text" name="ip-address" placeholder="boop beep boop">
+                </p>
+                <p>
+                    <label for="status">Username: </label>
+                    <input type="text" name="ip-address" placeholder="boop beep boop">
+                </p>
+                <p>
+                    <label for="status">ssh key: </label>
+                    <textarea name="params" cols="80" rows="10" disabled></textarea>
+                </p>
+                <button type="submit" disabled>Add to Queue</button> <button type="submit">Deploy</button>
+            </fieldset>
+            </form>
         </div>
     </div>
 </body>
