@@ -76,6 +76,7 @@ var ggsDevEnv = (function(){
 		document.getElementById("proj-window").style.display = "none";
 		document.getElementById("env-window").style.display = "none";
 		document.getElementById("create-proj-window").style.display = "block";
+
 	};
 
 	_setSubClickEvent = function() {
@@ -166,8 +167,8 @@ var ggsDevEnv = (function(){
 			xmlHttp.open( "POST", url, false );
 			xmlHttp.setRequestHeader("Content-type", "application/json");
 			xmlHttp.send(document.getElementById("proj-textarea").textContent);
-			document.getElementById("proj-textarea").addAttribute("disabled");
-			document.getElementById("proj-save").addAttribute("disabled");
+			document.getElementById("proj-textarea").setAttribute("disabled");
+			document.getElementById("proj-save").setAttribute("disabled");
 		}
 		else if(status === "deleteProject") {
 			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/"+document.getElementById("proj-textarea").getAttribute("acitve-code");
