@@ -4,6 +4,7 @@
 	<title>hackathon2014</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/bs.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript" src="js/ggsDevEnv.js"></script>
@@ -26,20 +27,20 @@
             <li>
                 <a href="#">Projects</a>
                 <ul id="pro-sub" class="sub-navi">
-                    <li><a href="#">Landing Pages</a></li>
+                    <li><a href="#">Landing Pages</a><i class="fa fa-trash-o right fa-1.5x"></i></li>
                     <li><a href="#">Game Integration</a></li>
                     <li><a href="#">Homepage</a></li>
                     <li><a href="#">Support</a></li>
-                    <li><a href="#">Create New</a></li>
+                    <li id="" class="btn btn-success" ><a href="#"><i class="fa fa-plus"></i> Create New</a></li>
                 </ul>
             </li>
             <li><a href="#">Environment</a>
-            <ul id="env-sub" class="sub-navi">
+                <ul id="env-sub" class="sub-navi">
                     <li><a href="#">Env 1</a></li>
                     <li><a href="#">Env 2</a></li>
                     <li><a href="#">Env 3</a></li>
                     <li><a href="#">Env 4</a></li>
-                    <li><a href="#">Create New</a></li>
+                    <li id="" class="btn btn-success" ><a href="#"><i class="fa fa-plus"></i> Create New</a></li>
                 </ul>
             </li>
         </ul>
@@ -76,11 +77,38 @@
                     <label for="status">ssh key: </label>
                     <textarea name="params" cols="80" rows="10" disabled></textarea>
                 </p>
-                <button type="submit" disabled>Add to Queue</button> <button type="submit">Deploy</button>
+                <button type="submit" disabled>Add to Queue</button>
+                <button type="submit">Deploy</button>
             </fieldset>
             </form>
         </div>
-        <!-- <footer><a href="readme.md">readme</a></footer> -->
+        <div id="create-env-window" class="create-env-window">
+            <form>
+            <fieldset>
+            <legend><h1>Create New Project</h1></legend>
+                <textarea name="params" cols="80" rows="25" disabled></textarea>
+                <button type="submit" disabled>Save New Project</button>
+            </fieldset>
+            </form>
+        </div>
+        <div id="create-proj-window" class="create-proj-window">
+            <form>
+            <fieldset>
+            <legend><h1>Create New Environment</h1></legend>
+                <p>
+                    <label for="status">Project Template: </label>
+                    <select>
+                      <option value="one">One</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="status">Environment Name: </label>
+                    <input type="text" name="env-name" placeholder="boop beep boop">
+                </p>
+                <button type="submit" disabled>Create New Environment</button>
+            </fieldset>
+            </form>
+        </div>
     </div>
 </body>
 </html>
