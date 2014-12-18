@@ -13,10 +13,12 @@ var ggsDevEnv = (function(){
 	};
 
 	_showElement = function(elem) {
+		elem.style.visibility = "visible";
 		elem.style.opacity = 1;
 	};
 
 	_hideElement = function(elem) {
+		elem.style.visibility = "hidden";
 		elem.style.opacity = 0;
 	};
 
@@ -47,32 +49,68 @@ var ggsDevEnv = (function(){
 			var liElem = document.getElementById('main-navi').children[0].children[i];
 			liElem.addEventListener("click", function()
 			{
-				ggsDevEnv.showElement(document.getElementById("sub-navi"));
-				ggsDevEnv.slideOut(document.getElementById('sub-navi'), '200px');
-				ggsDevEnv.addCssClass(document.getElementById("main-navi"),"opacityDown");
+				_checkVisibility();
+				_showElement(this.children[1]);
+				_slideOut(this.children[1], '200px');
+				_addCssClass(document.getElementById("main-navi"),"opacityDown");
 				
-			}, false)
+			}, false);
+		}
+	};
+
+	_setSubClickEvent = function() {
+		for(var i=0;i<document.getElementsByClassName('sub-navi').length;i++) { 
+			for(var n=0; n<document.getElementsByClassName('sub-navi')[i].children.length;n++) {
+				var liElem = document.getElementsByClassName('sub-navi')[i].children[n];
+				liElem.addEventListener("click", function() {
+					switch(this.parentNode.getAttribute("id")){
+						case "pro-sub":
+							_doProjectClickEvent(this);
+							break;
+						case "env-sub":
+							_doEnvClickEvent(this);
+							break;
+						default:
+							break;
+					}
+				}, false);
+			}
+		}
+	};
+
+	_doProjectClickEvent = function(element) {
+		document.getElementById("env-window").style.display = "none";
+		document.getElementById("proj-window").style.display = "block";
+	};
+
+	_doEnvClickEvent = function(element) {
+		document.getElementById("proj-window").style.display = "none";
+		document.getElementById("env-window").style.display = "block";
+	}
+
+	_checkVisibility = function() {
+		for(var l=0;l<document.getElementsByClassName('sub-navi').length;l++) {
+			if(document.getElementsByClassName('sub-navi')[l].style.visibility === "visible") {
+				var visibleElement = document.getElementsByClassName('sub-navi')[l];
+				_hideElement(visibleElement);
+			    _slideIn(visibleElement, '0');
+			}
 		}
 	};
 
 	_init = function() {
-		document.getElementById('main-navi').addEventListener("mouseenter", function(){ggsDevEnv.slideOut(document.getElementById('main-navi'), '0px')}, false);
+		document.getElementById('main-navi').addEventListener("mouseenter", function(){_slideOut(document.getElementById('main-navi'), '0px')}, false);
 		document.getElementById('main-navi').addEventListener("mouseleave", function(){
-			ggsDevEnv.slideIn(document.getElementById('main-navi'), '-230px');
-			ggsDevEnv.hideElement(document.getElementById('sub-navi'));
-			ggsDevEnv.slideIn(document.getElementById('sub-navi'), '0');
+			_slideIn(document.getElementById('main-navi'), '-230px');
+			_checkVisibility();
+			_removeCssClass(document.getElementById("main-navi"),"opacityDown");
 		}, false);
 		_setMainClickEvents();
+		_setSubClickEvent();
 	};
 
 	return {
-		init : _init,
-		slideOut : _slideOut,
-		slideIn : _slideIn,
-		showElement : _showElement,
-		hideElement : _hideElement,
-		addCssClass : _addCssClass,
-		removeCssClass : _removeCssClass
+		init : _init
 	}
 })();
 
