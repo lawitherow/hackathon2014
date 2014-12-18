@@ -28,6 +28,7 @@ textarea {
 .header-nav {
 	background-color: #002855;
 	position: relative;
+	height: 5%;
 }
 
 .header-nav h1 {
@@ -158,7 +159,7 @@ ul {
 	background-color: #37393b;
 	float: right;
 	position: absolute;
-	height: 75%;
+	padding: 0;
 	margin: 0 450px;
 	border-top: 1px solid white;
 	-webkit-box-shadow: -2.5px 5px 20px -2px #000;
