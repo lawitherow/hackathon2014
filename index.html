@@ -38,63 +38,51 @@
     </div>
     <div class="container">
         <div id="proj-window" class="proj-window">
-            <fieldset>
-            <legend><h1 id="proj-name">Project Name</h1></legend>
-                <textarea id="proj-textarea" name="params" cols="80" rows="25" disabled></textarea>
-                <button id="proj-edit">Edit</button>
-                <button id="proj-save" disabled>Save Changes</button>
-            </fieldset>
+            <h1 id="proj-name">Project Name</h1>
+            <textarea id="proj-textarea" name="params" cols="80" rows="25" disabled></textarea>
+            <button id="proj-edit">Edit</button>
+            <button id="proj-save" disabled>Save Changes</button>
         </div>
         <div id="env-window" class="env-window">
-            <fieldset>
-            <legend><h1 id="env-name">Environment Name</h1></legend>
-                <p>
-                    <label for="status">Environment Status: </label>
-                    <button type="button" class="btn btn-success">Lookin' Good! For now.</button>
-                    <!-- toggle class from btn-success to btn-warning, or btn-danger as needed -->
-                </p>
-                <p>
-                    <label for="status">IP Address: </label>
-                    <input type="text" name="ip-address" placeholder="boop beep boop">
-                </p>
-                <p>
-                    <label for="status">Username: </label>
-                    <input type="text" name="ip-address" placeholder="boop beep boop">
-                </p>
-                <p>
-                    <label for="status">ssh key: </label>
-                    <textarea name="params" cols="80" rows="10" disabled></textarea>
-                </p>
-                <button type="submit" disabled>Add to Queue</button>
-                <button type="submit">Deploy</button>
-            </fieldset>
+            <h1 id="env-name">Environment Name</h1>
+            <p>
+                <label for="status">Environment Status: </label>
+                <button type="button" class="btn btn-success">Lookin' Good! For now.</button>
+                <!-- toggle class from btn-success to btn-warning, or btn-danger as needed -->
+            </p>
+            <p>
+                <label for="status">IP Address: </label>
+                <input type="text" name="ip-address" placeholder="boop beep boop">
+            </p>
+            <p>
+                <label for="status">Username: </label>
+                <input type="text" name="ip-address" placeholder="boop beep boop">
+            </p>
+            <p>
+                <label for="status">ssh key: </label>
+                <textarea name="params" cols="80" rows="10" disabled></textarea>
+            </p>
+            <button type="submit" disabled>Add to Queue</button>
+            <button type="submit">Deploy</button>
         </div>
         <div id="create-env-window" class="create-env-window">
-            <form>
-            <fieldset>
-            <legend><h1>Create New Project</h1></legend>
-                <textarea name="params" cols="80" rows="25" disabled></textarea>
-                <button disabled>Save New Project</button>
-            </fieldset>
-            </form>
+            <h1>Create New Project</h1>
+            <textarea name="params" cols="80" rows="25" disabled></textarea>
+            <button disabled>Save New Project</button>
         </div>
         <div id="create-proj-window" class="create-proj-window">
-            <form>
-            <fieldset>
-            <legend><h1>Create New Environment</h1></legend>
-                <p>
-                    <label for="status">Project Template: </label>
-                    <select>
-                      <option value="one">One</option>
-                    </select>
-                </p>
-                <p>
-                    <label for="status">Environment Name: </label>
-                    <input type="text" name="env-name" placeholder="boop beep boop">
-                </p>
-                <button type="submit" disabled>Create New Environment</button>
-            </fieldset>
-            </form>
+            <h1>Create New Environment</h1>
+            <p>
+                <label for="status">Project Template: </label>
+                <select>
+                  <option value="one">One</option>
+                </select>
+            </p>
+            <p>
+                <label for="status">Environment Name: </label>
+                <input type="text" name="env-name" placeholder="boop beep boop">
+            </p>
+            <button type="submit" disabled>Create New Environment</button>
         </div>
     </div>
 </body>

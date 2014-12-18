@@ -165,14 +165,6 @@ ul {
     box-shadow: -2.5px 5px 20px -2px #000;
 }
 
-.container h1 {
-	margin: 15px;
-}
-
-.container form {
-	margin: 15px;
-}
-
 .container p {
 	color: white;
 }
@@ -190,6 +182,7 @@ ul {
 
 .proj-window, .env-window, .create-env-window, .create-proj-window {
 	display: none;
+	margin: 15px;
 }
 
 .right {
