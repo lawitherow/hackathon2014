@@ -188,7 +188,7 @@ ul {
 	background-color: rgba(0,40,85,0.7);
 }
 
-.proj-window, .env-window {
+.proj-window, .env-window, .create-env-window, .create-proj-window {
 	display: none;
 }
 
