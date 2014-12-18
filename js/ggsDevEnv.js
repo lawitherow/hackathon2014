@@ -132,31 +132,31 @@ var ggsDevEnv = (function(){
 
 	_doTheRequest = function(status,subStatus) {
 	    var xmlHttp = null;
-	    var basicURL = "http://localhost/hackathon2014/js/json1.json";
+	    var basicURL = "http://hack-nl01.nl.ggs-net.com/index.php/";
 
 	    xmlHttp = new XMLHttpRequest();
 	    var responseObj = "";
 
 	    if(status === "boxes") {
-			url = "http://localhost/hackathon2014/js/json1.json";
+			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes";
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "boxes-detail") {
-			url = "http://localhost/hackathon2014/js/json3.json";
+			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/"+subStatus;
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "environments") {
-			url = "http://localhost/hackathon2014/js/json2.json";
+			url = "http://hack-nl01.nl.ggs-net.com/index.php/environments";
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "saveProject") {
-			url = "http://localhost/hackathon2014/js/json2.json";
+			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/"+document.getElementById("proj-textarea").getAttribute("acitve-code");
 			xmlHttp.open( "POST", url, false );
 			xmlHttp.setRequestHeader("Content-type", "application/json");
 			xmlHttp.send(JSON.parse(document.getElementById("proj-textarea").textContent));
@@ -177,6 +177,7 @@ var ggsDevEnv = (function(){
 			document.getElementById("env-sub").innerHTML += "<li class='create-new btn btn-success'><a href='#'>Create new</a></li>";
 		}
 		else if(status === "boxes-detail") {
+			document.getElementById("proj-textarea").setAttribute("acitve-code",subStatus);
 			document.getElementById("proj-textarea").textContent = JSON.stringify(responseObj);
 		}
 	};
