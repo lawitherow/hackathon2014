@@ -154,13 +154,13 @@ var ggsDevEnv = (function(){
 			for(var i=0;i<responseObj.length;i++) {
 				document.getElementById("pro-sub").innerHTML += "<li data-name='"+responseObj[i]['code']+"'><a href='#'>"+responseObj[i]['name']+"</a><i class='fa fa-trash-o right fa-1.5x'></i></li>";
 			}
-			document.getElementById("pro-sub").innerHTML += "<li class='create-new'><a href='#'>Create new</a></li>";
+			document.getElementById("pro-sub").innerHTML += "<li class='create-new btn btn-success'><a href='#'>Create new</a></li>";
 		}
 		else if(status === "environments") {
 			for(var i=0;i<responseObj.length;i++) {
 				document.getElementById("env-sub").innerHTML += "<li data-name='"+responseObj[i]['code']+"'><a href='#'>"+responseObj[i]['name']+"</a><i class='fa fa-trash-o right fa-1.5x'></i></li>";
 			}
-			document.getElementById("env-sub").innerHTML += "<li class='create-new'><a href='#'>Create new</a></li>";
+			document.getElementById("env-sub").innerHTML += "<li class='create-new btn btn-success'><a href='#'>Create new</a></li>";
 		}
 		else if(status === "boxes-detail") {
 			document.getElementById("proj-textarea").textContent = JSON.stringify(responseObj);
