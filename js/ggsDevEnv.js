@@ -159,7 +159,7 @@ var ggsDevEnv = (function(){
 			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/"+document.getElementById("proj-textarea").getAttribute("acitve-code");
 			xmlHttp.open( "POST", url, false );
 			xmlHttp.setRequestHeader("Content-type", "application/json");
-			xmlHttp.send(JSON.parse(document.getElementById("proj-textarea").textContent));
+			xmlHttp.send(document.getElementById("proj-textarea").textContent);
 			document.getElementById("proj-textarea").addAttribute("disabled");
 			document.getElementById("proj-save").addAttribute("disabled");
 		}
