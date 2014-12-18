@@ -49,6 +49,7 @@ var ggsDevEnv = (function(){
 			var liElem = document.getElementById('main-navi').children[0].children[i];
 			liElem.addEventListener("click", function()
 			{
+				_checkVisibility();
 				ggsDevEnv.showElement(this.children[1]);
 				ggsDevEnv.slideOut(this.children[1], '200px');
 				ggsDevEnv.addCssClass(document.getElementById("main-navi"),"opacityDown");
@@ -57,12 +58,21 @@ var ggsDevEnv = (function(){
 		}
 	};
 
+	_checkVisibility = function() {
+		for(var l=0;l<document.getElementsByClassName('sub-navi').length;l++) {
+			if(document.getElementsByClassName('sub-navi')[l].style.visibility === "visible") {
+				var visibleElement = document.getElementsByClassName('sub-navi')[l];
+				ggsDevEnv.hideElement(visibleElement);
+				ggsDevEnv.slideIn(visibleElement, '0');
+			}
+		}
+	};
+
 	_init = function() {
 		document.getElementById('main-navi').addEventListener("mouseenter", function(){ggsDevEnv.slideOut(document.getElementById('main-navi'), '0px')}, false);
 		document.getElementById('main-navi').addEventListener("mouseleave", function(){
 			ggsDevEnv.slideIn(document.getElementById('main-navi'), '-230px');
-			ggsDevEnv.hideElement(document.getElementsByClassName('sub-navi'));
-			ggsDevEnv.slideIn(document.getElementsByClassName('sub-navi'), '0');
+			_checkVisibility();
 			ggsDevEnv.removeCssClass(document.getElementById("main-navi"),"opacityDown");
 		}, false);
 		_setMainClickEvents();
