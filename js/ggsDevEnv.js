@@ -69,14 +69,20 @@ var ggsDevEnv = (function(){
 	};
 
 	_createNewEnv = function() {
-
+		document.getElementById("proj-window").style.display = "none";
+		document.getElementById("env-window").style.display = "none";
+		document.getElementById("create-proj-window").style.display = "none";
+		document.getElementById("create-env-window").style.display = "block";
 	};
 
 	_createNewProject = function() {
 		document.getElementById("proj-window").style.display = "none";
 		document.getElementById("env-window").style.display = "none";
+		document.getElementById("create-env-window").style.display = "none";
 		document.getElementById("create-proj-window").style.display = "block";
-
+		document.getElementById("save-proj").addEventListener("click",function() {
+			_doTheRequest("createNewProject");
+		}, false);
 	};
 
 	_setSubClickEvent = function() {
@@ -122,8 +128,10 @@ var ggsDevEnv = (function(){
 	};
 
 	_doEnvClickEvent = function(element) {
+		document.getElementById("create-proj-window").style.display = "none";
 		document.getElementById("proj-window").style.display = "none";
 		document.getElementById("env-name").textContent = element.children[0].textContent;
+		_doTheRequest("env-details",element.getAttribute("data-name"));
 		document.getElementById("env-window").style.display = "block";
 	}
 
@@ -156,7 +164,7 @@ var ggsDevEnv = (function(){
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
-		else if(status === "environments") {
+		else if(status === "environments" || status === "env-details") {
 			url = "http://hack-nl01.nl.ggs-net.com/index.php/environments";
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
@@ -167,13 +175,20 @@ var ggsDevEnv = (function(){
 			xmlHttp.open( "POST", url, false );
 			xmlHttp.setRequestHeader("Content-type", "application/json");
 			xmlHttp.send(document.getElementById("proj-textarea").textContent);
-			document.getElementById("proj-textarea").setAttribute("disabled");
-			document.getElementById("proj-save").setAttribute("disabled");
+			document.getElementById("proj-textarea").setAttribute("disabled","disabled");
+			document.getElementById("proj-save").setAttribute("disabled","disabled");
 		}
 		else if(status === "deleteProject") {
 			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/"+document.getElementById("proj-textarea").getAttribute("acitve-code");
 			xmlHttp.open( "DELETE", url, false );
 			xmlHttp.send(null);
+			window.location.reload();
+		}
+		else if(status === "createNewProject") {
+			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/";
+			xmlHttp.open( "POST", url, false );
+			xmlHttp.setRequestHeader("Content-type", "application/json");
+			xmlHttp.send(document.getElementById("new-proj-textarea").textContent);
 			window.location.reload();
 		}
 
@@ -188,6 +203,13 @@ var ggsDevEnv = (function(){
 				document.getElementById("env-sub").innerHTML += "<li data-name='"+responseObj[i]['code']+"'><a href='#'>"+responseObj[i]['name']+"</a></li>";
 			}
 			document.getElementById("env-sub").innerHTML += "<li class='create-new btn btn-success'><a href='#'>Create new</a></li>";
+		}
+		else if(status === "env-details") {
+			for(var i=0;i<responseObj.length;i++) {
+				if(responseObj[i]['code'] === subStatus) {
+
+				}
+			}
 		}
 		else if(status === "boxes-detail") {
 			document.getElementById("proj-textarea").setAttribute("acitve-code",subStatus);
