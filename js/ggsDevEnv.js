@@ -108,6 +108,7 @@ var ggsDevEnv = (function(){
 	};
 
 	_doProjectClickEvent = function(element) {
+		_doTheRequest("boxes-detail",element.getAttribute("data-name"));
 		document.getElementById("env-window").style.display = "none";
 		document.getElementById("proj-name").textContent = element.children[0].textContent;
 		document.getElementById("proj-window").style.display = "block";
@@ -129,34 +130,40 @@ var ggsDevEnv = (function(){
 		}
 	};
 
-	_doTheRequest = function(status) {
+	_doTheRequest = function(status,subStatus) {
 	    var xmlHttp = null;
 	    var basicURL = "http://localhost/hackathon2014/js/json1.json";
 
 	    xmlHttp = new XMLHttpRequest();
 
 	    if(status === "boxes") {
-			basicURL = "http://localhost/hackathon2014/js/json1.json";
+			url = "http://localhost/hackathon2014/js/json1.json";
+		}
+		else if(status === "boxes-detail") {
+			url = "http://localhost/hackathon2014/js/json3.json";
 		}
 		else if(status === "environments") {
-			basicURL = "http://localhost/hackathon2014/js/json2.json";
+			url = "http://localhost/hackathon2014/js/json2.json";
 		}
 
-    	xmlHttp.open( "GET", basicURL/*+status*/, false );
+    	xmlHttp.open( "GET", url, false );
 	    xmlHttp.send( null );
 	    var responseObj = JSON.parse(xmlHttp.responseText);
 
 		if(status === "boxes") {
 			for(var i=0;i<responseObj.length;i++) {
-				document.getElementById("pro-sub").innerHTML += "<li><a href='#'>"+responseObj[i]['name']+"</a><i class='fa fa-trash-o right fa-1.5x'></i></li>";
+				document.getElementById("pro-sub").innerHTML += "<li data-name='"+responseObj[i]['code']+"'><a href='#'>"+responseObj[i]['name']+"</a><i class='fa fa-trash-o right fa-1.5x'></i></li>";
 			}
 			document.getElementById("pro-sub").innerHTML += "<li class='create-new'><a href='#'>Create new</a></li>";
 		}
 		else if(status === "environments") {
 			for(var i=0;i<responseObj.length;i++) {
-				document.getElementById("env-sub").innerHTML += "<li><a href='#'>"+responseObj[i]['name']+"</a><i class='fa fa-trash-o right fa-1.5x'></i></li>";
+				document.getElementById("env-sub").innerHTML += "<li data-name='"+responseObj[i]['code']+"'><a href='#'>"+responseObj[i]['name']+"</a><i class='fa fa-trash-o right fa-1.5x'></i></li>";
 			}
 			document.getElementById("env-sub").innerHTML += "<li class='create-new'><a href='#'>Create new</a></li>";
+		}
+		else if(status === "boxes-detail") {
+			document.getElementById("proj-textarea").textContent = JSON.stringify(responseObj);
 		}
 	};
 
