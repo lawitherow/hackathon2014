@@ -26,21 +26,11 @@
             <li>
                 <a href="#">Projects</a>
                 <ul id="pro-sub" class="sub-navi">
-                    <li><a href="#">Landing Pages</a></li>
-                    <li><a href="#">Game Integration</a></li>
-                    <li><a href="#">Homepage</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Create New</a></li>
                 </ul>
             </li>
             <li><a href="#">Environment</a>
             <ul id="env-sub" class="sub-navi">
-                    <li><a href="#">Env 1</a></li>
-                    <li><a href="#">Env 2</a></li>
-                    <li><a href="#">Env 3</a></li>
-                    <li><a href="#">Env 4</a></li>
-                    <li><a href="#">Create New</a></li>
-                </ul>
+            </ul>
             </li>
         </ul>
     </div>
@@ -48,7 +38,7 @@
         <div id="proj-window" class="proj-window">
             <form>
             <fieldset>
-            <legend><h1>Project Name</h1></legend>
+            <legend><h1 id="proj-name">Project Name</h1></legend>
                 <textarea name="params" cols="80" rows="25" disabled></textarea>
                 <button type="submit">Edit</button>
                 <button type="submit" disabled>Save Changes</button>
@@ -58,7 +48,7 @@
         <div id="env-window" class="env-window">
             <form>
             <fieldset>
-            <legend><h1>Environment Name</h1></legend>
+            <legend><h1 id="env-name">Environment Name</h1></legend>
                 <p>
                     <label for="status">Environment Status: </label>
                     <button type="button" class="btn btn-success">Lookin' Good! For now.</button>

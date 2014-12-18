@@ -32,6 +32,16 @@ var ggsDevEnv = (function(){
 	    element.className +=" "+ cssCls;
 	};
 
+	_hasCssClass = function(element, cssCls) {
+		if(typeof(element) === 'string') {
+	        element = document.getElementById(element);
+	    }
+	    if(!element) {
+			return;	    	
+	    }
+		return (' ' + element.className + ' ').indexOf(' ' + cssCls + ' ') > -1;
+	};
+
 	_removeCssClass = function(element,cssCls) {
 		if(typeof(element) === 'string'){
 	        element = document.getElementById(element);
@@ -58,17 +68,36 @@ var ggsDevEnv = (function(){
 		}
 	};
 
+	_createNewEnv = function() {
+
+	};
+
+	_createNewProject = function() {
+
+	};
+
 	_setSubClickEvent = function() {
 		for(var i=0;i<document.getElementsByClassName('sub-navi').length;i++) { 
 			for(var n=0; n<document.getElementsByClassName('sub-navi')[i].children.length;n++) {
-				var liElem = document.getElementsByClassName('sub-navi')[i].children[n];
-				liElem.addEventListener("click", function() {
+				var liSubElem = document.getElementsByClassName('sub-navi')[i].children[n];
+				liSubElem.addEventListener("click", function(event) {
+					event.stopPropagation()
 					switch(this.parentNode.getAttribute("id")){
 						case "pro-sub":
-							_doProjectClickEvent(this);
+							if(_hasCssClass(this,"create-new")) {
+								_createNewProject();
+							}
+							else {
+								_doProjectClickEvent(this);
+							}
 							break;
 						case "env-sub":
-							_doEnvClickEvent(this);
+							if(_hasCssClass(this,"create-new")) {
+								_createNewEnv();
+							}
+							else {
+								_doEnvClickEvent(this);
+							}
 							break;
 						default:
 							break;
@@ -80,11 +109,13 @@ var ggsDevEnv = (function(){
 
 	_doProjectClickEvent = function(element) {
 		document.getElementById("env-window").style.display = "none";
+		document.getElementById("proj-name").textContent = element.children[0].textContent;
 		document.getElementById("proj-window").style.display = "block";
 	};
 
 	_doEnvClickEvent = function(element) {
 		document.getElementById("proj-window").style.display = "none";
+		document.getElementById("env-name").textContent = element.children[0].textContent;
 		document.getElementById("env-window").style.display = "block";
 	}
 
@@ -98,7 +129,40 @@ var ggsDevEnv = (function(){
 		}
 	};
 
+	_doTheRequest = function(status) {
+	    var xmlHttp = null;
+	    var basicURL = "http://localhost/hackathon2014/js/json1.json";
+
+	    xmlHttp = new XMLHttpRequest();
+
+	    if(status === "boxes") {
+			basicURL = "http://localhost/hackathon2014/js/json1.json";
+		}
+		else if(status === "environments") {
+			basicURL = "http://localhost/hackathon2014/js/json2.json";
+		}
+
+    	xmlHttp.open( "GET", basicURL/*+status*/, false );
+	    xmlHttp.send( null );
+	    var responseObj = JSON.parse(xmlHttp.responseText);
+
+		if(status === "boxes") {
+			for(var i=0;i<responseObj.length;i++) {
+				document.getElementById("pro-sub").innerHTML += "<li><a href='#'>"+responseObj[i]['name']+"</a><i class='fa fa-trash-o right fa-1.5x'></i></li>";
+			}
+			document.getElementById("pro-sub").innerHTML += "<li class='create-new'><a href='#'>Create new</a></li>";
+		}
+		else if(status === "environments") {
+			for(var i=0;i<responseObj.length;i++) {
+				document.getElementById("env-sub").innerHTML += "<li><a href='#'>"+responseObj[i]['name']+"</a><i class='fa fa-trash-o right fa-1.5x'></i></li>";
+			}
+			document.getElementById("env-sub").innerHTML += "<li class='create-new'><a href='#'>Create new</a></li>";
+		}
+	};
+
 	_init = function() {
+		_doTheRequest("boxes");
+		_doTheRequest("environments");
 		document.getElementById('main-navi').addEventListener("mouseenter", function(){_slideOut(document.getElementById('main-navi'), '0px')}, false);
 		document.getElementById('main-navi').addEventListener("mouseleave", function(){
 			_slideIn(document.getElementById('main-navi'), '-230px');

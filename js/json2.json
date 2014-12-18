@@ -1,0 +1,1 @@
+[{"name":"Landing Page - 01","code":"lp-01","nodes":[{"name":"web","chef":{"run_list":["recipe[ggs-base]","recipe[ggs-web-app-lp]"],"attributes":{"ggs-web-nginx":{"vhost":{"newrelic_enabled":false}}}}},{"name":"memcached","chef":{"run_list":["recipe[ggs-base]","recipe[ggs-web-app-lp::memcached]"],"attributes":{"ggs-web-splunk":{"inputs":[]}}}}]}]
