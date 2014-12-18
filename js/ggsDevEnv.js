@@ -73,6 +73,8 @@ var ggsDevEnv = (function(){
 	};
 
 	_createNewProject = function() {
+		document.getElementById("proj-window").style.display = "none";
+		document.getElementById("env-window").style.display = "none";
 		document.getElementById("create-proj-window").style.display = "block";
 	};
 
@@ -111,6 +113,7 @@ var ggsDevEnv = (function(){
 		_doTheRequest("boxes-detail",element.getAttribute("data-name"));
 		document.getElementById("env-window").style.display = "none";
 		document.getElementById("proj-name").textContent = element.children[0].textContent;
+		document.getElementById("create-proj-window").style.display = "none";
 		document.getElementById("proj-window").style.display = "block";
 		document.getElementById("proj-trash").addEventListener("click",function() {
 			_doTheRequest("deleteProject",element.getAttribute("data-name"));
