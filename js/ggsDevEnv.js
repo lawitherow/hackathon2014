@@ -207,7 +207,15 @@ var ggsDevEnv = (function(){
 		else if(status === "env-details") {
 			for(var i=0;i<responseObj.length;i++) {
 				if(responseObj[i]['code'] === subStatus) {
-
+					document.getElementById("env-status-btn").textContent = responseObj[i]['status'];
+					if(responseObj[i]['status'] === "off") {
+						_removeCssClass(document.getElementById("env-status-btn"),"btn-success");
+						_addCssClass(document.getElementById("env-status-btn"),"btn-danger");
+					}
+					else if(responseObj[i]['status'] === "on"){
+						_removeCssClass(document.getElementById("env-status-btn"),"btn-danger");
+						_addCssClass(document.getElementById("env-status-btn"),"btn-success");
+					}
 				}
 			}
 		}
