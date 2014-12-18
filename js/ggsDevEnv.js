@@ -73,7 +73,7 @@ var ggsDevEnv = (function(){
 	};
 
 	_createNewProject = function() {
-
+		document.getElementById("create-proj-window").style.display = "block";
 	};
 
 	_setSubClickEvent = function() {
@@ -112,6 +112,9 @@ var ggsDevEnv = (function(){
 		document.getElementById("env-window").style.display = "none";
 		document.getElementById("proj-name").textContent = element.children[0].textContent;
 		document.getElementById("proj-window").style.display = "block";
+		document.getElementById("proj-trash").addEventListener("click",function() {
+			_doTheRequest("deleteProject",element.getAttribute("data-name"));
+		}, false);
 	};
 
 	_doEnvClickEvent = function(element) {
@@ -162,6 +165,12 @@ var ggsDevEnv = (function(){
 			xmlHttp.send(document.getElementById("proj-textarea").textContent);
 			document.getElementById("proj-textarea").addAttribute("disabled");
 			document.getElementById("proj-save").addAttribute("disabled");
+		}
+		else if(status === "deleteProject") {
+			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/"+document.getElementById("proj-textarea").getAttribute("acitve-code");
+			xmlHttp.open( "DELETE", url, false );
+			xmlHttp.send(null);
+			window.location.reload();
 		}
 
 		if(status === "boxes") {
