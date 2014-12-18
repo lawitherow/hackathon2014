@@ -38,17 +38,14 @@
     </div>
     <div class="container">
         <div id="proj-window" class="proj-window">
-            <form>
             <fieldset>
             <legend><h1 id="proj-name">Project Name</h1></legend>
                 <textarea id="proj-textarea" name="params" cols="80" rows="25" disabled></textarea>
-                <button type="submit">Edit</button>
-                <button type="submit" disabled>Save Changes</button>
+                <button id="proj-edit">Edit</button>
+                <button id="proj-save" disabled>Save Changes</button>
             </fieldset>
-            </form>
         </div>
         <div id="env-window" class="env-window">
-            <form>
             <fieldset>
             <legend><h1 id="env-name">Environment Name</h1></legend>
                 <p>
@@ -71,7 +68,6 @@
                 <button type="submit" disabled>Add to Queue</button>
                 <button type="submit">Deploy</button>
             </fieldset>
-            </form>
         </div>
         <div id="create-env-window" class="create-env-window">
             <form>

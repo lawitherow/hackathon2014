@@ -135,20 +135,34 @@ var ggsDevEnv = (function(){
 	    var basicURL = "http://localhost/hackathon2014/js/json1.json";
 
 	    xmlHttp = new XMLHttpRequest();
+	    var responseObj = "";
 
 	    if(status === "boxes") {
 			url = "http://localhost/hackathon2014/js/json1.json";
+			xmlHttp.open( "GET", url, false );
+			xmlHttp.send( null );
+	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "boxes-detail") {
 			url = "http://localhost/hackathon2014/js/json3.json";
+			xmlHttp.open( "GET", url, false );
+			xmlHttp.send( null );
+	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "environments") {
 			url = "http://localhost/hackathon2014/js/json2.json";
+			xmlHttp.open( "GET", url, false );
+			xmlHttp.send( null );
+	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
-
-    	xmlHttp.open( "GET", url, false );
-	    xmlHttp.send( null );
-	    var responseObj = JSON.parse(xmlHttp.responseText);
+		else if(status === "saveProject") {
+			url = "http://localhost/hackathon2014/js/json2.json";
+			xmlHttp.open( "POST", url, false );
+			xmlHttp.setRequestHeader("Content-type", "application/json");
+			xmlHttp.send(JSON.parse(document.getElementById("proj-textarea").textContent));
+			document.getElementById("proj-textarea").addAttribute("disabled");
+			document.getElementById("proj-save").addAttribute("disabled");
+		}
 
 		if(status === "boxes") {
 			for(var i=0;i<responseObj.length;i++) {
@@ -178,6 +192,18 @@ var ggsDevEnv = (function(){
 		}, false);
 		_setMainClickEvents();
 		_setSubClickEvent();
+		document.getElementById("proj-edit").addEventListener("click", 
+			function()			{
+				document.getElementById("proj-textarea").removeAttribute("disabled");
+				document.getElementById("proj-save").removeAttribute("disabled");
+			}, 
+		false);
+
+		document.getElementById("proj-save").addEventListener("click", 
+			function()			{
+				_doTheRequest("saveProject");
+			}, 
+		false);
 	};
 
 	return {
