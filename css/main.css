@@ -188,3 +188,11 @@ ul {
 .right {
 	float: right;
 }
+
+.right-m {
+	margin: 15px;
+}
+
+.fa {
+	color: white;
+}
