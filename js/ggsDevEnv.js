@@ -159,7 +159,7 @@ var ggsDevEnv = (function(){
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "boxes-detail") {
-			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes"+subStatus;
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes/" +subStatus;
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);

@@ -38,6 +38,7 @@
     </div>
     <div class="container">
         <div id="proj-window" class="proj-window">
+            <i class="fa fa-times-circle-o right"></i>
             <h1 id="proj-name">Project Name</h1>
             <textarea id="proj-textarea" name="params" cols="80" rows="25" disabled></textarea>
             <button id="proj-edit">Edit</button>
@@ -45,6 +46,7 @@
             <i id="proj-trash"class='fa fa-trash-o right'></i>
         </div>
         <div id="env-window" class="env-window">
+            <i class="fa fa-times-circle-o right"></i>
             <h1 id="env-name">Environment Name</h1>
             <p>
                 <label for="status">Environment Status: </label>
@@ -68,11 +70,13 @@
             <i id="env-trash" class='fa fa-trash-o right'></i>
         </div>
         <div id="create-proj-window" class="create-env-window">
+            <i class="fa fa-times-circle-o right"></i>
             <h1>Create New Project</h1>
             <textarea id="new-proj-textarea" name="params" cols="80" rows="25">{"code": "new-project","name": "New Project","nodes":[{"name": "web","chef": {"run_list": [],"attributes": {}}}]}</textarea>
             <button id="save-proj">Save New Project</button>
         </div>
         <div id="create-env-window" class="create-proj-window">
+            <i class="fa fa-times-circle-o right"></i>
             <h1>Create New Environment</h1>
             <p>
                 <label>Project Template: </label>
