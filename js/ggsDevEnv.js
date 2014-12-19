@@ -4,25 +4,32 @@
 
 var ggsDevEnv = (function(){
 
-	_slideOut = function(elem,value) {
+	var projWindow = document.getElementById("proj-window")
+		mainNavi = document.getElementById('main-navi'),
+		subNavi = document.getElementsByClassName('sub-navi'),
+		envWindow = document.getElementById("env-window"),
+		createProjWindow = document.getElementById("create-proj-window"),
+		createEnvWindow = document.getElementById("create-env-window");
+
+	_slideOut = function( elem, value ) {
 		elem.style.left = value;
 	};
 
-	_slideIn = function(elem,value) {
+	_slideIn = function( elem, value ) {
 		elem.style.left = value;
 	};
 
-	_showElement = function(elem) {
+	_showElement = function( elem ) {
 		elem.style.visibility = "visible";
 		elem.style.opacity = 1;
 	};
 
-	_hideElement = function(elem) {
+	_hideElement = function( elem ) {
 		elem.style.visibility = "hidden";
 		elem.style.opacity = 0;
 	};
 
-	_addCssClass = function(element,cssCls) {
+	_addCssClass = function( element, cssCls ) {
 		if(typeof(element) === 'string') {
 	        element = document.getElementById(element);
 	    }
@@ -32,7 +39,7 @@ var ggsDevEnv = (function(){
 	    element.className +=" "+ cssCls;
 	};
 
-	_hasCssClass = function(element, cssCls) {
+	_hasCssClass = function( element, cssCls ) {
 		if(typeof(element) === 'string') {
 	        element = document.getElementById(element);
 	    }
@@ -42,53 +49,53 @@ var ggsDevEnv = (function(){
 		return (' ' + element.className + ' ').indexOf(' ' + cssCls + ' ') > -1;
 	};
 
-	_removeCssClass = function(element,cssCls) {
+	_removeCssClass = function( element, cssCls ) {
 		if(typeof(element) === 'string'){
 	        element = document.getElementById(element);
 	    }
 	    if(!element) {
 	    	return;
 	    }
-	    var t_text = ""+element.className;
-	    t_text = t_text.replace(eval("/ "+cssCls+"/g"), "");
+	    var t_text = "" + element.className;
+	    t_text = t_text.replace(eval("/ " + cssCls + "/g"), "");
 	    element.className = t_text;
 	};
 
 	_setMainClickEvents = function() {
-		for(var i=0; i<document.getElementById('main-navi').children[0].children.length; i++) {
-			var liElem = document.getElementById('main-navi').children[0].children[i];
+		for(var i = 0; i < mainNavi.children[0].children.length; i++) {
+			var liElem = mainNavi.children[0].children[i];
 			liElem.addEventListener("click", function()
 			{
 				_checkVisibility();
 				_showElement(this.children[1]);
 				_slideOut(this.children[1], '200px');
-				_addCssClass(document.getElementById("main-navi"),"opacityDown");
+				_addCssClass(mainNavi, "opacityDown");
 				
 			}, false);
 		}
 	};
 
 	_createNewEnv = function() {
-		document.getElementById("proj-window").style.display = "none";
-		document.getElementById("env-window").style.display = "none";
-		document.getElementById("create-proj-window").style.display = "none";
-		document.getElementById("create-env-window").style.display = "block";
+		projWindow.style.display = "none";
+		envWindow.style.display = "none";
+		createProjWindow.style.display = "none";
+		createEnvWindow.style.display = "block";
 	};
 
 	_createNewProject = function() {
-		document.getElementById("proj-window").style.display = "none";
-		document.getElementById("env-window").style.display = "none";
-		document.getElementById("create-env-window").style.display = "none";
-		document.getElementById("create-proj-window").style.display = "block";
+		projWindow.style.display = "none";
+		envWindow.style.display = "none";
+		createEnvWindow.style.display = "none";
+		createProjWindow.style.display = "block";
 		document.getElementById("save-proj").addEventListener("click",function() {
 			_doTheRequest("createNewProject");
 		}, false);
 	};
 
 	_setSubClickEvent = function() {
-		for(var i=0;i<document.getElementsByClassName('sub-navi').length;i++) { 
-			for(var n=0; n<document.getElementsByClassName('sub-navi')[i].children.length;n++) {
-				var liSubElem = document.getElementsByClassName('sub-navi')[i].children[n];
+		for(var i = 0; i < subNavi.length; i++) { 
+			for(var n = 0; n < subNavi[i].children.length; n++) {
+				var liSubElem = subNavi[i].children[n];
 				liSubElem.addEventListener("click", function(event) {
 					event.stopPropagation()
 					switch(this.parentNode.getAttribute("id")){
@@ -118,27 +125,27 @@ var ggsDevEnv = (function(){
 
 	_doProjectClickEvent = function(element) {
 		_doTheRequest("boxes-detail",element.getAttribute("data-name"));
-		document.getElementById("env-window").style.display = "none";
+		envWindow.style.display = "none";
 		document.getElementById("proj-name").textContent = element.children[0].textContent;
-		document.getElementById("create-proj-window").style.display = "none";
-		document.getElementById("proj-window").style.display = "block";
+		createProjWindow.style.display = "none";
+		projWindow.style.display = "block";
 		document.getElementById("proj-trash").addEventListener("click",function() {
 			_doTheRequest("deleteProject",element.getAttribute("data-name"));
 		}, false);
 	};
 
 	_doEnvClickEvent = function(element) {
-		document.getElementById("create-proj-window").style.display = "none";
-		document.getElementById("proj-window").style.display = "none";
+		createProjWindow.style.display = "none";
+		projWindow.style.display = "none";
 		document.getElementById("env-name").textContent = element.children[0].textContent;
 		_doTheRequest("env-details",element.getAttribute("data-name"));
-		document.getElementById("env-window").style.display = "block";
+		envWindow.style.display = "block";
 	}
 
 	_checkVisibility = function() {
-		for(var l=0;l<document.getElementsByClassName('sub-navi').length;l++) {
-			if(document.getElementsByClassName('sub-navi')[l].style.visibility === "visible") {
-				var visibleElement = document.getElementsByClassName('sub-navi')[l];
+		for(var l=0;l<document.subNavi.length;l++) {
+			if(subNavi[l].style.visibility === "visible") {
+				var visibleElement = subNavi[l];
 				_hideElement(visibleElement);
 			    _slideIn(visibleElement, '0');
 			}
@@ -147,25 +154,25 @@ var ggsDevEnv = (function(){
 
 	_doTheRequest = function(status,subStatus) {
 	    var xmlHttp = null;
-	    var basicURL = "http://hack-nl01.nl.ggs-net.com/index.php/";
+	    var basicURL = "http://hackathon2014.nl.ggs-net.com/index.php/";
 
 	    xmlHttp = new XMLHttpRequest();
 	    var responseObj = "";
 
 	    if(status === "boxes") {
-			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes";
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes/";
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "boxes-detail") {
-			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/"+subStatus;
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes/" + subStatus;
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "environments" || status === "env-details") {
-			url = "http://hack-nl01.nl.ggs-net.com/index.php/environments";
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/environments/";
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
@@ -228,11 +235,11 @@ var ggsDevEnv = (function(){
 	_init = function() {
 		_doTheRequest("boxes");
 		_doTheRequest("environments");
-		document.getElementById('main-navi').addEventListener("mouseenter", function(){_slideOut(document.getElementById('main-navi'), '0px')}, false);
-		document.getElementById('main-navi').addEventListener("mouseleave", function(){
-			_slideIn(document.getElementById('main-navi'), '-230px');
+		mainNavi.addEventListener("mouseenter", function(){_slideOut(mainNavi, '0px')}, false);
+		mainNavi.addEventListener("mouseleave", function(){
+			_slideIn(mainNavi, '-230px');
 			_checkVisibility();
-			_removeCssClass(document.getElementById("main-navi"),"opacityDown");
+			_removeCssClass(mainNavi,"opacityDown");
 		}, false);
 		_setMainClickEvents();
 		_setSubClickEvent();
