@@ -154,25 +154,25 @@ var ggsDevEnv = (function(){
 
 	_doTheRequest = function(status,subStatus) {
 	    var xmlHttp = null;
-	    var basicURL = "http://hackathon2014.nl.ggs-net.com/index.php/";
+	    var basicURL = "http://hackathon2014.nl.ggs-net.com/index.php";
 
 	    xmlHttp = new XMLHttpRequest();
 	    var responseObj = "";
 
 	    if(status === "boxes") {
-			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes/";
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes";
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "boxes-detail") {
-			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes/" + subStatus;
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes" + subStatus;
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "environments" || status === "env-details") {
-			url = "http://hackathon2014.nl.ggs-net.com/index.php/environments/";
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/environments";
 			xmlHttp.open( "GET", url, false );
 			xmlHttp.send( null );
 	     	responseObj = JSON.parse(xmlHttp.responseText);
