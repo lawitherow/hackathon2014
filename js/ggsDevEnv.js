@@ -171,7 +171,7 @@ var ggsDevEnv = (function(){
 	     	responseObj = JSON.parse(xmlHttp.responseText);
 		}
 		else if(status === "saveProject") {
-			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/"+document.getElementById("proj-textarea").getAttribute("acitve-code");
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes/"+document.getElementById("proj-textarea").getAttribute("acitve-code");
 			xmlHttp.open( "POST", url, false );
 			xmlHttp.setRequestHeader("Content-type", "application/json");
 			xmlHttp.send(document.getElementById("proj-textarea").textContent);
@@ -179,13 +179,13 @@ var ggsDevEnv = (function(){
 			document.getElementById("proj-save").setAttribute("disabled","disabled");
 		}
 		else if(status === "deleteProject") {
-			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/"+document.getElementById("proj-textarea").getAttribute("acitve-code");
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes/"+document.getElementById("proj-textarea").getAttribute("acitve-code");
 			xmlHttp.open( "DELETE", url, false );
 			xmlHttp.send(null);
 			window.location.reload();
 		}
 		else if(status === "createNewProject") {
-			url = "http://hack-nl01.nl.ggs-net.com/index.php/boxes/";
+			url = "http://hackathon2014.nl.ggs-net.com/index.php/boxes/";
 			xmlHttp.open( "POST", url, false );
 			xmlHttp.setRequestHeader("Content-type", "application/json");
 			xmlHttp.send(document.getElementById("new-proj-textarea").textContent);
